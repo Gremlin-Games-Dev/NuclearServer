@@ -32,7 +32,6 @@ if not os.path.exists(CONFIG_FILE):
     with open(CONFIG_FILE, 'w') as f:
         json.dump({"server_name": "Default Server"}, f)
 
-# Get config file (this route stays HTTP)
 @app.route('/config.json', methods=['GET', 'OPTIONS'])
 def get_config():
     if request.method == 'OPTIONS':
@@ -45,7 +44,6 @@ def get_config():
         return send_from_directory('.', CONFIG_FILE)
     return "Config not found", 404
 
-# Get map file (this route stays HTTP)
 @app.route('/map.zip', methods=['GET', 'OPTIONS'])
 def get_map():
     if request.method == 'OPTIONS':
@@ -58,7 +56,6 @@ def get_map():
         return send_from_directory('.', MAP_FILE)
     return "Map not found", 404
 
-# Get icon file (this route stays HTTP)
 @app.route('/icon.svg', methods=['GET', 'OPTIONS'])
 def get_icon():
     if request.method == 'OPTIONS':
